@@ -1,0 +1,73 @@
+#first importing the dataset and converting each attribute to a list and then 
+#we use the lists to make a dictionary. 
+
+
+import pandas as pd
+df=pd.read_csv("data_csv.csv")
+
+def lmaker(s):
+    for i in range(len(s)):
+        s[i]=s[i][0]
+        
+    return s
+
+dic={}
+keys=df.iloc[:,1:].values.tolist()
+keys=lmaker(keys)
+names=df.iloc[:,:-1].values.tolist()
+names=lmaker(names)
+
+for key in keys:
+    for name in names:
+          dic[key]=name
+          names.remove(name)
+          break
+      
+#once we make the dictionary , we input the keys and form two lists containing
+# the keys and names of requird countries.
+#but we face a challenge in taking input, i.e where the second coming 
+# key is inputted first and first coming key is inputted second
+
+
+required_keys,required_values=[],[]
+
+k1,k2=input("enter the keys in between which u want the names of countries").split()
+k1f=False
+k1t,k2t=True,True 
+
+#here we make sure what kind of input did we get, either in order or reversed like mentioned above.
+for i in keys:
+    if i==k1 and k1t:
+        k2t=False
+    elif i==k2 and k2t:
+        k1t=False
+  
+       #here we simply make a list containng the keys we need 
+for i in keys:
+        
+    if k1t:
+        if i==k1:
+            k1f=True
+        elif i==k2:
+            k1f=False
+        if k1f:
+            required_keys.append(i)
+         
+    elif k2t:
+        if i==k2:
+            k1f=True
+        elif i==k1:
+            k1f=False
+        if k1f:
+            required_keys.append(i)        
+        
+del required_keys[0]
+# here we get the values corresponding to the keys.
+for i in required_keys:
+    required_values.append(dic[i])
+
+required_values.sort()    
+
+for i in range(len(required_values)):
+    print (required_values[i])
+    
