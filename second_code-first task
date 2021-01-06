@@ -68,7 +68,7 @@ del required_keys[0]
 for i in required_keys:
     required_values.append(dic[i])
 
-required_values.sort()    
+required_values.sort()   
 
 for i in range(len(required_values)):
     print (required_values[i])
