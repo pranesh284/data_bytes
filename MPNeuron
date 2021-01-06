@@ -1,0 +1,69 @@
+#creating a class with the given requirements.
+
+class MPNeuron:
+    value=0
+    def __init__(self):
+        self.n=3
+        self.inputs=[1,1,1]
+        self.weights=[1,1,1]
+        self.threshold=2.5
+        
+    def MP_Neuron_Input(self,n,inputs,weights,threshold ):
+        self.n=n
+        self.inputs=inputs
+        self.weights=weights
+        self.threshold=threshold
+    
+    def MP_Neuron_Evaluate(self):
+        for i in range(self.n):
+            self.value+=self.inputs[i]*self.weights[i]
+        
+        if self.value>=self.threshold:
+            return 1
+        else:
+            return 0
+
+#an nand gate with MPNeurons require 4 neurons.
+#now making a nand gate like mentioned in the link given for reference i.e with 4 neurons and 3 inputs.
+
+#creating objects of MPNeuron
+mpn1=MPNeuron()
+mpn2=MPNeuron()
+mpn3=MPNeuron()
+mpn4=MPNeuron()
+
+#getting the inputs
+
+i1,i2,i3 = map(int,input("enter the three inputs").split())
+
+#providing the values to neurons
+mpn1.MP_Neuron_Input(1,[i1],[-1],0)
+mpn2.MP_Neuron_Input(1,[i2],[-1],0)
+mpn3.MP_Neuron_Input(1,[i3],[-1],0)
+
+#the output of the first 3 neurons are the inputs for the 4th neuron
+
+mpn4.MP_Neuron_Input(3, [mpn1.MP_Neuron_Evaluate(),mpn2.MP_Neuron_Evaluate(),mpn3.MP_Neuron_Evaluate()], [1,1,1], 1)
+print(mpn4.MP_Neuron_Evaluate())
+
+#here we are testing with known values of input,
+#but if we dont know the number of inputs,the following code to be used.
+#the following code is for n input nand gate
+
+# n=map(int,input("enter number of inputs"))
+# i=[]
+# for t in range(n):
+#           i.append(map(int,input("enter value and press enter").split()))
+# l,e,w=[],[],[]
+
+# for t in range(n) :
+#    l.append(MPNeuron())
+#    l[t].MP_Neuron_Input(1,[i[t]],[-1],0)
+#    e.append(l[t].MP_Neuron_Evaluate())
+#    w.append(1)
+
+# mpn=MPNeuron()
+# mpn.MP_Neuron_Input(n, e, w, 1)
+# print(mpn.MP_Neuron_Evaluate())
+   
+
