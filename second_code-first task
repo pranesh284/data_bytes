@@ -19,9 +19,9 @@ names=lmaker(names)
 
 for key in keys:
     for name in names:
-          dic[key]=name
-          names.remove(name)
-          break
+        dic[key]=name
+        names.remove(name)
+        break
       
 #once we make the dictionary , we input the keys and form two lists containing
 # the keys and names of requird countries.
@@ -39,8 +39,10 @@ k1t,k2t=True,True
 for i in keys:
     if i==k1 and k1t:
         k2t=False
+        break
     elif i==k2 and k2t:
         k1t=False
+        break
   
        #here we simply make a list containng the keys we need 
 for i in keys:
